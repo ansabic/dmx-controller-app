@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111318">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>DMX Controller</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="top">
+    <span id="conn" class="dot" title="connection"></span>
+    <button id="bleBtn" class="small primary" hidden>Connect</button>
+    <label class="master">Master <input id="master" type="range" min="0" max="255" value="255"></label>
+    <button id="blackout" class="blackout">Blackout</button>
+  </div>
+  <nav>
+    <button data-tab="pars" class="on">Pars</button>
+    <button data-tab="fx">Effects</button>
+    <button data-tab="scenes">Scenes</button>
+    <button data-tab="faders">Faders</button>
+    <button data-tab="settings">Setup</button>
+  </nav>
+</header>
+
+<main>
+  <section id="tab-pars" class="tab on">
+    <div class="card group">
+      <div class="row head">
+        <h2>Selected pars</h2>
+        <span>
+          <button id="selAll" class="small">All</button>
+          <button id="selNone" class="small">None</button>
+        </span>
+      </div>
+      <div id="groupSwatches" class="swatches"></div>
+      <div class="row"><span>Color</span><input id="groupColor" type="color" value="#ffffff"></div>
+      <label class="slider"><span>Dimmer</span><input id="groupDim" type="range" min="0" max="255" value="255"></label>
+      <label class="slider"><span>White</span><input id="groupWhite" type="range" min="0" max="255" value="0"></label>
+      <label class="slider"><span>Strobe</span><input id="groupStrobe" type="range" min="0" max="255" value="0"></label>
+    </div>
+    <div id="parCards"></div>
+    <button id="reset" class="wide danger">Reset all channels</button>
+  </section>
+
+  <section id="tab-fx" class="tab">
+    <div class="card">
+      <div id="fxButtons" class="grid"></div>
+      <label class="slider"><span>Speed</span><input id="fxSpeed" type="range" min="0" max="255"></label>
+      <label class="slider"><span>Intensity</span><input id="fxIntensity" type="range" min="0" max="255"></label>
+      <div class="row"><span>Color 1</span><input id="fxC1" type="color"></div>
+      <div class="row"><span>Color 2</span><input id="fxC2" type="color"></div>
+      <div class="row"><span>Pars</span><span id="fxMask" class="checks"></span></div>
+      <p class="hint">Effects run on the controller and keep going if your phone sleeps.
+        Chase alternates Color 1 / Color 2, Fade blends between them.</p>
+    </div>
+  </section>
+
+  <section id="tab-scenes" class="tab">
+    <div class="card">
+      <div class="seg" id="sceneMode">
+        <button data-mode="recall" class="on">Recall</button>
+        <button data-mode="save">Save</button>
+        <button data-mode="delete">Delete</button>
+      </div>
+      <label class="slider"><span>Fade <b id="fadeVal">0.0s</b></span><input id="fade" type="range" min="0" max="100" value="0"></label>
+    </div>
+    <div id="sceneGrid" class="grid scenes"></div>
+  </section>
+
+  <section id="tab-faders" class="tab">
+    <div class="card row">
+      <button id="pgPrev" class="small">&#9664;</button>
+      <label>Start ch <input id="pgStart" type="number" min="1" max="512" value="1"></label>
+      <button id="pgNext" class="small">&#9654;</button>
+    </div>
+    <div id="faders" class="card"></div>
+  </section>
+
+  <section id="tab-settings" class="tab">
+    <div id="cfgPars"></div>
+    <button id="cfgSave" class="wide primary">Save setup</button>
+    <div class="card">
+      <h2>Status</h2>
+      <div id="status" class="status">connecting…</div>
+      <p class="hint">Set each par's DMX address on the fixture itself to match the address here.
+        Put a 120&nbsp;Ω terminator in the DMX OUT of the last par.</p>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

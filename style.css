@@ -1,0 +1,64 @@
+:root {
+  --bg: #111318; --card: #1c1f27; --line: #2c303b; --text: #e8e9ee; --muted: #9096a6;
+  --accent: #4f8cff; --danger: #ff4f5e; --ok: #3ccf7a;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; background: var(--bg); color: var(--text);
+  font: 15px/1.35 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+header { position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: env(safe-area-inset-top) 12px 0; border-bottom: 1px solid var(--line); }
+.top { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
+.master { flex: 1; display: flex; align-items: center; gap: 8px; color: var(--muted); }
+.master input { flex: 1; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--danger); flex: none; }
+.dot.ok { background: var(--ok); }
+nav { display: flex; overflow-x: auto; }
+nav button { flex: 1; background: none; border: 0; color: var(--muted); padding: 10px 6px;
+  font: inherit; border-bottom: 2px solid transparent; }
+nav button.on { color: var(--text); border-color: var(--accent); }
+main { padding: 12px; max-width: 720px; margin: 0 auto; }
+.tab { display: none; }
+.tab.on { display: block; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+  padding: 12px; margin-bottom: 12px; }
+h2 { font-size: 16px; margin: 0; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 8px 0; }
+.row.head { margin-top: 0; }
+.slider { display: grid; grid-template-columns: 84px 1fr 34px; align-items: center; gap: 8px; margin: 10px 0; }
+.slider output { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.slider span { color: var(--muted); }
+input[type=range] { width: 100%; height: 28px; accent-color: var(--accent); }
+input[type=color] { width: 64px; height: 40px; border: 1px solid var(--line); border-radius: 8px;
+  background: none; padding: 2px; }
+input[type=number], input[type=text], select { background: var(--bg); color: var(--text);
+  border: 1px solid var(--line); border-radius: 8px; padding: 8px; font: inherit; }
+input[type=number] { width: 80px; }
+button { font: inherit; color: var(--text); background: #2a2f3b; border: 1px solid var(--line);
+  border-radius: 10px; padding: 12px; cursor: pointer; }
+button:active { filter: brightness(1.3); }
+button.small { padding: 6px 12px; }
+button.wide { width: 100%; margin-bottom: 12px; }
+button.primary, button.on { background: var(--accent); border-color: var(--accent); }
+button.danger { color: var(--danger); }
+.blackout { background: #3a1d22; border-color: var(--danger); color: #fff; font-weight: 600; }
+.blackout.on { background: var(--danger); animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: .6; } }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.grid.scenes button { min-height: 64px; word-break: break-word; }
+.grid.scenes button.empty { color: var(--muted); border-style: dashed; background: none; }
+.swatches { display: grid; grid-template-columns: repeat(9, 1fr); gap: 6px; margin: 10px 0; }
+.swatches button { aspect-ratio: 1; padding: 0; border-radius: 50%; border: 2px solid var(--line); }
+.par .swatch { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--line); flex: none; }
+.par .name { flex: 1; display: flex; align-items: center; gap: 10px; }
+.par .name input { width: 22px; height: 22px; }
+.par .addr { color: var(--muted); font-size: 13px; }
+details summary { color: var(--muted); margin-top: 6px; cursor: pointer; }
+.checks label { margin-left: 10px; }
+.seg { display: flex; gap: 6px; margin-bottom: 6px; }
+.seg button { flex: 1; }
+.hint { color: var(--muted); font-size: 13px; margin: 10px 0 0; }
+.status { font-family: ui-monospace, monospace; font-size: 13px; white-space: pre-line; margin-top: 8px; }
+.fader { grid-template-columns: 70px 1fr 34px; }
+.fader span small { display: block; font-size: 11px; color: var(--muted); }
+.roles { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 6px; margin-top: 8px; }
+.roles label { font-size: 12px; color: var(--muted); display: flex; flex-direction: column; gap: 2px; }
